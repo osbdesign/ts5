@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Prototype - Email Verification</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="container">
+    <header class="text-center mb-4">
+      <h1>Registration Form</h1>
+    </header>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: 49.8%;"></div>
+      </div>
+      <div class="progress-steps">
+        <div class="progress-step completed">Identity</div>
+        <div class="progress-step completed">Address</div>
+        <div class="progress-step active">Email</div>
+        <div class="progress-step">Phone</div>
+        <div class="progress-step">Account</div>
+        <div class="progress-step">Confirmation</div>
+      </div>
+    </div>
+
+    <form id="multi-step-form" novalidate>
+      <div class="form-container">
+        <div class="form-page" id="page3">
+          <h2>Email Verification</h2>
+          <p class="mb-3">Please verify your email address to continue.</p>
+          
+          <!-- Email verification section -->
+          <div class="card mb-4">
+            <h3 class="card-title">Verify Your Email</h3>
+            
+            <!-- Email input/display -->
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <div class="form-row">
+                <div class="form-col" style="flex: 3;">
+                  <input type="email" id="email" name="email" class="form-control" value="j***@e*****.com" required data-validate="email">
+                  <div class="invalid-feedback">Please enter a valid email address</div>
+                </div>
+                <div class="form-col" style="flex: 1;">
+                  <button type="button" id="sendVerificationBtn" class="btn btn-primary" style="width: 100%;">Send Code</button>
+                </div>
+              </div>
+              <span class="form-hint mt-1">We'll send a verification code to this email address</span>
+            </div>
+            
+            <!-- Verification code input (initially hidden) -->
+            <div class="form-group" id="emailVerificationCodeContainer" style="display: none;">
+              <label for="emailVerificationCode" class="form-label">Verification Code</label>
+              <input type="text" id="emailVerificationCode" name="emailVerificationCode" class="form-control" placeholder="Enter the 6-digit code" required maxlength="6" data-validate="numeric">
+              <div class="invalid-feedback">Please enter the verification code</div>
+              <span class="form-hint mt-1">Enter the 6-digit code sent to your email</span>
+              
+              <div class="mt-2">
+                <button type="button" id="verifyEmailCodeBtn" class="btn btn-primary">Verify Code</button>
+                <button type="button" id="resendEmailCodeBtn" class="btn btn-outline">Resend Code</button>
+              </div>
+              
+              <!-- Success message (initially hidden) -->
+              <div id="emailVerificationSuccess" class="mt-2 text-success" style="display: none;">
+                <strong>✓ Email verified successfully!</strong>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Phone verification section (initially hidden, will be shown on page 4) -->
+          <div id="phoneVerificationSection" style="display: none;">
+            <div class="card mb-4">
+              <h3 class="card-title">Verify Your Phone Number</h3>
+              
+              <!-- Phone input -->
+              <div class="form-group">
+                <label for="phone" class="form-label">Mobile Phone Number</label>
+                <div class="form-row">
+                  <div class="form-col" style="flex: 3;">
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="+44 7700 900000" required data-validate="phone">
+                    <div class="invalid-feedback">Please enter a valid phone number</div>
+                  </div>
+                  <div class="form-col" style="flex: 1;">
+                    <button type="button" id="sendPhoneVerificationBtn" class="btn btn-primary" style="width: 100%;">Send Code</button>
+                  </div>
+                </div>
+                <span class="form-hint mt-1">We'll send a verification code to this phone number</span>
+              </div>
+              
+              <!-- Phone verification code input (initially hidden) -->
+              <div class="form-group" id="phoneVerificationCodeContainer" style="display: none;">
+                <label for="phoneVerificationCode" class="form-label">Verification Code</label>
+                <input type="text" id="phoneVerificationCode" name="phoneVerificationCode" class="form-control" placeholder="Enter the 6-digit code" required maxlength="6" data-validate="numeric">
+                <div class="invalid-feedback">Please enter the verification code</div>
+                <span class="form-hint mt-1">Enter the 6-digit code sent to your phone</span>
+                
+                <div class="mt-2">
+                  <button type="button" id="verifyPhoneCodeBtn" class="btn btn-primary">Verify Code</button>
+                  <button type="button" id="resendPhoneCodeBtn" class="btn btn-outline">Resend Code</button>
+                </div>
+                
+                <!-- Success message (initially hidden) -->
+                <div id="phoneVerificationSuccess" class="mt-2 text-success" style="display: none;">
+                  <strong>✓ Phone number verified successfully!</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-navigation">
+            <button type="button" class="btn btn-outline btn-prev">Previous</button>
+            <button type="button" class="btn btn-primary btn-next">Next</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+    <div class="text-center mt-3">
+      <p>Need help? <a href="#">Contact support</a></p>
+    </div>
+  </div>
+
+  <script src="../js/validation.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script>
+    // Additional page-specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      // Send verification code button
+      const sendVerificationBtn = document.getElementById('sendVerificationBtn');
+      sendVerificationBtn.addEventListener('click', function() {
+        const emailInput = document.getElementById('email');
+        if (FormValidation.validateInput(emailInput)) {
+          // Show verification code input
+          document.getElementById('emailVerificationCodeContainer').style.display = 'block';
+          // Disable the send button temporarily
+          this.disabled = true;
+          this.textContent = 'Code Sent';
+          setTimeout(() => {
+            this.disabled = false;
+            this.textContent = 'Send Code';
+          }, 30000); // 30 seconds cooldown
+        }
+      });
+      
+      // Verify email code button
+      const verifyEmailCodeBtn = document.getElementById('verifyEmailCodeBtn');
+      verifyEmailCodeBtn.addEventListener('click', function() {
+        const codeInput = document.getElementById('emailVerificationCode');
+        if (codeInput.value.length === 6) {
+          // Show success message
+          document.getElementById('emailVerificationSuccess').style.display = 'block';
+          // Disable inputs and buttons
+          document.getElementById('email').disabled = true;
+          document.getElementById('emailVerificationCode').disabled = true;
+          document.getElementById('sendVerificationBtn').disabled = true;
+          document.getElementById('verifyEmailCodeBtn').disabled = true;
+          document.getElementById('resendEmailCodeBtn').disabled = true;
+          
+          // Show phone verification section (page 4)
+          document.getElementById('phoneVerificationSection').style.display = 'block';
+        } else {
+          codeInput.classList.add('is-invalid');
+        }
+      });
+      
+      // Resend email code button
+      const resendEmailCodeBtn = document.getElementById('resendEmailCodeBtn');
+      resendEmailCodeBtn.addEventListener('click', function() {
+        this.disabled = true;
+        this.textContent = 'Code Sent';
+        setTimeout(() => {
+          this.disabled = false;
+          this.textContent = 'Resend Code';
+        }, 30000); // 30 seconds cooldown
+      });
+      
+      // Send phone verification code button
+      const sendPhoneVerificationBtn = document.getElementById('sendPhoneVerificationBtn');
+      sendPhoneVerificationBtn.addEventListener('click', function() {
+        const phoneInput = document.getElementById('phone');
+        if (FormValidation.validateInput(phoneInput)) {
+          // Show verification code input
+          document.getElementById('phoneVerificationCodeContainer').style.display = 'block';
+          // Disable the send button temporarily
+          this.disabled = true;
+          this.textContent = 'Code Sent';
+          setTimeout(() => {
+            this.disabled = false;
+            this.textContent = 'Send Code';
+          }, 30000); // 30 seconds cooldown
+        }
+      });
+      
+      // Verify phone code button
+      const verifyPhoneCodeBtn = document.getElementById('verifyPhoneCodeBtn');
+      verifyPhoneCodeBtn.addEventListener('click', function() {
+        const codeInput = document.getElementById('phoneVerificationCode');
+        if (codeInput.value.length === 6) {
+          // Show success message
+          document.getElementById('phoneVerificationSuccess').style.display = 'block';
+          // Disable inputs and buttons
+          document.getElementById('phone').disabled = true;
+          document.getElementById('phoneVerificationCode').disabled = true;
+          document.getElementById('sendPhoneVerificationBtn').disabled = true;
+          document.getElementById('verifyPhoneCodeBtn').disabled = true;
+          document.getElementById('resendPhoneCodeBtn').disabled = true;
+        } else {
+          codeInput.classList.add('is-invalid');
+        }
+      });
+      
+      // Resend phone code button
+      const resendPhoneCodeBtn = document.getElementById('resendPhoneCodeBtn');
+      resendPhoneCodeBtn.addEventListener('click', function() {
+        this.disabled = true;
+        this.textContent = 'Code Sent';
+        setTimeout(() => {
+          this.disabled = false;
+          this.textContent = 'Resend Code';
+        }, 30000); // 30 seconds cooldown
+      });
+      
+      // Override the next button behavior
+      const nextButton = document.querySelector('.btn-next');
+      const originalNextPage = FormNavigation.nextPage;
+      FormNavigation.nextPage = function() {
+        // Check if both email and phone are verified
+        const emailVerified = document.getElementById('emailVerificationSuccess').style.display === 'block';
+        const phoneVerified = document.getElementById('phoneVerificationSuccess').style.display === 'block';
+        
+        if (emailVerified && phoneVerified) {
+          // Proceed to next page
+          originalNextPage.call(FormNavigation);
+        } else if (emailVerified) {
+          // Show error for phone verification
+          alert('Please verify your phone number before proceeding.');
+        } else {
+          // Show error for email verification
+          alert('Please verify your email address before proceeding.');
+        }
+      };
+    });
+  </script>
+</body>
+</html>

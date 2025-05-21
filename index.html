@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Prototype - Start</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="container">
+    <header class="text-center mb-4">
+      <h1>Application Form</h1>
+      <p class="mb-3">Complete this form to submit your application</p>
+    </header>
+
+    <div class="card">
+      <h2>Before You Begin</h2>
+      <p>This form will guide you through the application process. Please have the following information ready:</p>
+      
+      <ul class="mb-3">
+        <li>Personal details (name, contact information)</li>
+        <li>Address information</li>
+        <li>Employment details</li>
+        <li>Supporting documents (if applicable)</li>
+      </ul>
+      
+      <p class="mb-3">The form consists of multiple steps and will take approximately 5-10 minutes to complete.</p>
+      
+      <p class="mb-3">You can save your progress at any time and return later to complete the application.</p>
+      
+      <div class="text-center mt-4">
+        <a href="form-pages/page1.html" class="btn btn-primary btn-lg">Start Application</a>
+      </div>
+    </div>
+    
+    <div class="text-center mt-3">
+      <p>Need help? <a href="#">Contact support</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Clear any previous form data when starting a new application
+    document.addEventListener('DOMContentLoaded', function() {
+      sessionStorage.removeItem('formData');
+    });
+  </script>
+</body>
+</html>

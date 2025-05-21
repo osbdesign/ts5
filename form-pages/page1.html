@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Prototype - Identity Confirmation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="container">
+    <header class="text-center mb-4">
+      <h1>Registration Form</h1>
+    </header>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: 16.6%;"></div>
+      </div>
+      <div class="progress-steps">
+        <div class="progress-step active">Identity</div>
+        <div class="progress-step">Address</div>
+        <div class="progress-step">Email</div>
+        <div class="progress-step">Phone</div>
+        <div class="progress-step">Account</div>
+        <div class="progress-step">Confirmation</div>
+      </div>
+    </div>
+
+    <form id="multi-step-form" novalidate>
+      <div class="form-container">
+        <div class="form-page" id="page1">
+          <h2>Identity Confirmation</h2>
+          <p class="mb-3">Please confirm your identity by providing the following information.</p>
+          
+          <div class="form-row">
+            <div class="form-col">
+              <div class="form-group">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                <div class="invalid-feedback">Please enter your first name</div>
+              </div>
+            </div>
+            <div class="form-col">
+              <div class="form-group">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" id="lastName" name="lastName" class="form-control" required>
+                <div class="invalid-feedback">Please enter your last name</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="middleName" class="form-label">Middle Name <span class="text-light">(optional)</span></label>
+            <input type="text" id="middleName" name="middleName" class="form-control">
+          </div>
+          
+          <div class="form-group">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input type="date" id="dob" name="dob" class="form-control" required>
+            <div class="invalid-feedback">Please enter your date of birth</div>
+            <span class="form-hint">Format: YYYY-MM-DD</span>
+          </div>
+          
+          <div class="form-navigation">
+            <button type="button" class="btn btn-outline btn-prev" style="display: none;">Previous</button>
+            <button type="button" class="btn btn-primary btn-next">Next</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+    <div class="text-center mt-3">
+      <p>Need help? <a href="#">Contact support</a></p>
+    </div>
+  </div>
+
+  <script src="../js/validation.js"></script>
+  <script src="../js/navigation.js"></script>
+</body>
+</html>

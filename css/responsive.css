@@ -1,0 +1,179 @@
+/* 
+ * Form Prototype - Responsive Styles
+ * Mobile-first responsive design for the form prototype
+ */
+
+/* Base mobile styles are in styles.css */
+
+/* Small devices (landscape phones, 480px and up) */
+@media (min-width: 480px) {
+  .container {
+    padding: var(--spacing-lg);
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  .form-container {
+    padding: var(--spacing-xl);
+  }
+  
+  /* Two-column layout for certain form groups */
+  .form-row {
+    display: flex;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  
+  .form-col {
+    flex: 1 0 0%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    padding: var(--spacing-xl);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .form-container {
+    padding: var(--spacing-xxl);
+  }
+  
+  /* Enhanced progress bar */
+  .progress-container {
+    margin-bottom: var(--spacing-xxl);
+  }
+  
+  .progress-bar {
+    height: 10px;
+  }
+  
+  .progress-steps {
+    margin-top: var(--spacing-md);
+  }
+  
+  .progress-step {
+    font-size: 0.875rem;
+    position: relative;
+  }
+  
+  .progress-step::before {
+    content: '';
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--border-color);
+    border-radius: 50%;
+  }
+  
+  .progress-step.active::before {
+    background-color: var(--primary-color);
+  }
+  
+  .progress-step.completed::before {
+    background-color: var(--success-color);
+  }
+  
+  /* Form layout improvements */
+  .form-group.inline {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-group.inline .form-label {
+    flex: 0 0 30%;
+    margin-bottom: 0;
+    margin-right: var(--spacing-md);
+  }
+  
+  .form-group.inline .form-control {
+    flex: 1;
+  }
+  
+  /* Three-column layout option */
+  .form-row.three-cols .form-col {
+    flex: 0 0 33.333333%;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+  
+  /* Enhanced card layout */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+  }
+  
+  /* Form layout refinements */
+  .form-group.inline .form-label {
+    flex: 0 0 25%;
+  }
+  
+  /* Larger buttons on desktop */
+  .btn-lg {
+    padding: 1.125rem 2.25rem;
+    font-size: 1.25rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+  
+  /* Maximum form width for readability */
+  .form-container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .form-container {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .form-navigation,
+  .progress-container {
+    display: none;
+  }
+  
+  .btn {
+    display: none;
+  }
+  
+  /* Show URLs after links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+}

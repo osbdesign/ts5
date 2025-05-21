@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Prototype - Registration Successful</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="container">
+    <header class="text-center mb-4">
+      <h1>Registration Form</h1>
+    </header>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: 100%;"></div>
+      </div>
+      <div class="progress-steps">
+        <div class="progress-step completed">Identity</div>
+        <div class="progress-step completed">Address</div>
+        <div class="progress-step completed">Email</div>
+        <div class="progress-step completed">Phone</div>
+        <div class="progress-step completed">Account</div>
+        <div class="progress-step completed">Confirmation</div>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <div class="text-center mb-4">
+        <h2>You've Successfully Registered!</h2>
+        <p class="mb-3">Thank you for completing the registration process.</p>
+      </div>
+      
+      <div class="card-grid">
+        <!-- Bank details card -->
+        <div class="card">
+          <h3 class="card-title">You've Got New Bank Details</h3>
+          <p>Your new account has been set up with the following details:</p>
+          <div class="mb-2">
+            <strong>Account Number:</strong> <span id="accountNumber">XXXX XXXX XXXX 1234</span>
+          </div>
+          <div class="mb-2">
+            <strong>Sort Code:</strong> <span id="sortCode">XX-XX-XX</span>
+          </div>
+          <p class="mb-2">You can access your online banking immediately using the username you created.</p>
+          <div class="text-center mt-3">
+            <a href="#" class="btn btn-primary">Go to Online Banking</a>
+          </div>
+        </div>
+        
+        <!-- Account details card -->
+        <div class="card">
+          <h3 class="card-title">Make Sure Your Account Details Are Up to Date</h3>
+          <p>It's important to keep your account information current:</p>
+          <ul>
+            <li>Verify your contact information is correct</li>
+            <li>Set up additional security features</li>
+            <li>Configure your notification preferences</li>
+            <li>Add any additional account holders</li>
+          </ul>
+          <p class="mb-2">You can update your details at any time through your account settings.</p>
+          <div class="text-center mt-3">
+            <a href="#" class="btn btn-outline">Update Account Settings</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="index.html" class="btn btn-primary">Return to Home</a>
+      </div>
+    </div>
+    
+    <div class="text-center mt-3">
+      <p>Need help? <a href="#">Contact support</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Clear form data from session storage since registration is complete
+      sessionStorage.removeItem('formData');
+    });
+  </script>
+</body>
+</html>

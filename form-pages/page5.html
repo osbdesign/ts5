@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Prototype - Create Account</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="container">
+    <header class="text-center mb-4">
+      <h1>Registration Form</h1>
+    </header>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: 83%;"></div>
+      </div>
+      <div class="progress-steps">
+        <div class="progress-step completed">Identity</div>
+        <div class="progress-step completed">Address</div>
+        <div class="progress-step completed">Email</div>
+        <div class="progress-step completed">Phone</div>
+        <div class="progress-step active">Account</div>
+        <div class="progress-step">Confirmation</div>
+      </div>
+    </div>
+
+    <form id="multi-step-form" novalidate>
+      <div class="form-container">
+        <div class="form-page" id="page5">
+          <h2>Create Your Account</h2>
+          <p class="mb-3">Set up your username and password to complete your registration.</p>
+          
+          <div class="card mb-4">
+            <h3 class="card-title">Account Details</h3>
+            
+            <!-- Username input -->
+            <div class="form-group">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" id="username" name="username" class="form-control" required minlength="8" maxlength="20" pattern="^[a-zA-Z0-9]+$">
+              <div class="invalid-feedback">Username must be 8-20 characters and contain only letters and numbers</div>
+              <span class="form-hint mt-1">8-20 characters, letters and numbers only (no special characters)</span>
+            </div>
+            
+            <!-- Password input -->
+            <div class="form-group">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" id="password" name="password" class="form-control" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
+              <div class="invalid-feedback">Password must be at least 8 characters with 1 uppercase letter, 1 lowercase letter, and 1 number</div>
+              <span class="form-hint mt-1">Minimum 8 characters, must include 1 uppercase letter, 1 lowercase letter, and 1 number</span>
+            </div>
+            
+            <!-- Password strength indicator -->
+            <div class="form-group">
+              <div class="progress-bar" style="height: 6px; margin-bottom: 10px;">
+                <div id="passwordStrength" class="progress-bar-fill" style="width: 0%; background-color: #d62828;"></div>
+              </div>
+              <div id="passwordStrengthText" class="form-hint">Password strength: Too weak</div>
+            </div>
+            
+            <!-- Confirm password input -->
+            <div class="form-group">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+              <div class="invalid-feedback">Passwords do not match</div>
+            </div>
+            
+            <!-- Terms and conditions checkbox -->
+            <div class="form-group mb-0">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="termsAgreed" name="termsAgreed" required>
+                <label class="form-check-label" for="termsAgreed">
+                  I agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>
+                </label>
+                <div class="invalid-feedback">You must agree to the terms to continue</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-navigation">
+            <button type="button" class="btn btn-outline btn-prev">Previous</button>
+            <button type="button" class="btn btn-primary btn-next">Create Account</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+    <div class="text-center mt-3">
+      <p>Need help? <a href="#">Contact support</a></p>
+    </div>
+  </div>
+
+  <script src="../js/validation.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script>
+    // Additional page-specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      const passwordStrength = document.getElementById('passwordStrength');
+      const passwordStrengthText = document.getElementById('passwordStrengthText');
+      
+      // Password strength checker
+      passwordInput.addEventListener('input', function() {
+        const password = this.value;
+        let strength = 0;
+        let strengthText = '';
+        let strengthColor = '';
+        
+        // Check password length
+        if (password.length >= 8) {
+          strength += 25;
+        }
+        
+        // Check for lowercase letters
+        if (password.match(/[a-z]+/)) {
+          strength += 25;
+        }
+        
+        // Check for uppercase letters
+        if (password.match(/[A-Z]+/)) {
+          strength += 25;
+        }
+        
+        // Check for numbers
+        if (password.match(/[0-9]+/)) {
+          strength += 25;
+        }
+        
+        // Update strength indicator
+        passwordStrength.style.width = strength + '%';
+        
+        // Set color and text based on strength
+        if (strength < 25) {
+          strengthColor = '#d62828'; // Red
+          strengthText = 'Too weak';
+        } else if (strength < 50) {
+          strengthColor = '#f77f00'; // Orange
+          strengthText = 'Weak';
+        } else if (strength < 75) {
+          strengthColor = '#fcbf49'; // Yellow
+          strengthText = 'Medium';
+        } else if (strength < 100) {
+          strengthColor = '#90be6d'; // Light green
+          strengthText = 'Strong';
+        } else {
+          strengthColor = '#43aa8b'; // Green
+          strengthText = 'Very strong';
+        }
+        
+        passwordStrength.style.backgroundColor = strengthColor;
+        passwordStrengthText.textContent = 'Password strength: ' + strengthText;
+      });
+      
+      // Confirm password validation
+      confirmPasswordInput.addEventListener('input', function() {
+        if (this.value !== passwordInput.value) {
+          this.classList.add('is-invalid');
+        } else {
+          this.classList.remove('is-invalid');
+          this.classList.add('is-valid');
+        }
+      });
+      
+      // Username validation
+      const usernameInput = document.getElementById('username');
+      usernameInput.addEventListener('input', function() {
+        const username = this.value;
+        const isValid = username.length >= 8 && username.length <= 20 && /^[a-zA-Z0-9]+$/.test(username);
+        
+        if (isValid) {
+          this.classList.remove('is-invalid');
+          this.classList.add('is-valid');
+        } else {
+          this.classList.add('is-invalid');
+        }
+      });
+      
+      // Override the next button behavior
+      const nextButton = document.querySelector('.btn-next');
+      const originalNextPage = FormNavigation.nextPage;
+      FormNavigation.nextPage = function() {
+        // Validate all fields
+        const usernameValid = FormValidation.validateInput(usernameInput);
+        const passwordValid = FormValidation.validateInput(passwordInput);
+        const confirmPasswordValid = confirmPasswordInput.value === passwordInput.value;
+        const termsAgreed = document.getElementById('termsAgreed').checked;
+        
+        if (!confirmPasswordValid) {
+          confirmPasswordInput.classList.add('is-invalid');
+        }
+        
+        if (!termsAgreed) {
+          document.getElementById('termsAgreed').classList.add('is-invalid');
+        }
+        
+        if (usernameValid && passwordValid && confirmPasswordValid && termsAgreed) {
+          // Proceed to next page
+          originalNextPage.call(FormNavigation);
+        }
+      };
+    });
+  </script>
+</body>
+</html>

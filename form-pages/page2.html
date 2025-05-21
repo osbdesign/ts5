@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Prototype - Address Information</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="container">
+    <header class="text-center mb-4">
+      <h1>Registration Form</h1>
+    </header>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: 33.2%;"></div>
+      </div>
+      <div class="progress-steps">
+        <div class="progress-step completed">Identity</div>
+        <div class="progress-step active">Address</div>
+        <div class="progress-step">Email</div>
+        <div class="progress-step">Phone</div>
+        <div class="progress-step">Account</div>
+        <div class="progress-step">Confirmation</div>
+      </div>
+    </div>
+
+    <form id="multi-step-form" novalidate>
+      <div class="form-container">
+        <div class="form-page" id="page2">
+          <h2>Address Information</h2>
+          <p class="mb-3">Please provide your home address.</p>
+          
+          <!-- Previous information (disabled) -->
+          <div class="card mb-3">
+            <h3 class="card-title">Identity Information</h3>
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="firstName-disabled" class="form-label">First Name</label>
+                  <input type="text" id="firstName-disabled" class="form-control" disabled>
+                </div>
+              </div>
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="lastName-disabled" class="form-label">Last Name</label>
+                  <input type="text" id="lastName-disabled" class="form-control" disabled>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group mb-0">
+              <label for="dob-disabled" class="form-label">Date of Birth</label>
+              <input type="date" id="dob-disabled" class="form-control" disabled>
+            </div>
+          </div>
+          
+          <!-- Address search -->
+          <div class="form-group">
+            <label for="addressSearch" class="form-label">Search for your address</label>
+            <div class="form-row">
+              <div class="form-col" style="flex: 3;">
+                <input type="text" id="addressSearch" name="addressSearch" class="form-control" placeholder="Enter your postcode" required>
+                <div class="invalid-feedback">Please enter your postcode to search</div>
+              </div>
+              <div class="form-col" style="flex: 1;">
+                <button type="button" id="searchAddressBtn" class="btn btn-primary" style="width: 100%;">Search</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Address dropdown (initially hidden, shown after search) -->
+          <div class="form-group" id="addressDropdownContainer" style="display: none;">
+            <label for="addressDropdown" class="form-label">Select your address</label>
+            <select id="addressDropdown" name="address" class="form-control" required>
+              <option value="">Please select your address</option>
+              <option value="address1">123 Main Street, London, SW1A 1AA</option>
+              <option value="address2">125 Main Street, London, SW1A 1AB</option>
+              <option value="address3">127 Main Street, London, SW1A 1AC</option>
+              <option value="address4">129 Main Street, London, SW1A 1AD</option>
+              <option value="address5">131 Main Street, London, SW1A 1AE</option>
+            </select>
+            <div class="invalid-feedback">Please select your address</div>
+            <span class="form-hint mt-1">Can't find your address? <a href="#" id="enterManuallyLink">Enter manually</a></span>
+          </div>
+          
+          <!-- Manual address entry (initially hidden) -->
+          <div id="manualAddressContainer" style="display: none;">
+            <div class="form-group">
+              <label for="addressLine1" class="form-label">Address Line 1</label>
+              <input type="text" id="addressLine1" name="addressLine1" class="form-control" required>
+              <div class="invalid-feedback">Please enter your address</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="addressLine2" class="form-label">Address Line 2 <span class="text-light">(optional)</span></label>
+              <input type="text" id="addressLine2" name="addressLine2" class="form-control">
+            </div>
+            
+            <div class="form-row">
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="city" class="form-label">City/Town</label>
+                  <input type="text" id="city" name="city" class="form-control" required>
+                  <div class="invalid-feedback">Please enter your city/town</div>
+                </div>
+              </div>
+              <div class="form-col">
+                <div class="form-group">
+                  <label for="postcode" class="form-label">Postcode</label>
+                  <input type="text" id="postcode" name="postcode" class="form-control" required data-validate="postcode">
+                  <div class="invalid-feedback">Please enter a valid postcode</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-navigation">
+            <button type="button" class="btn btn-outline btn-prev">Previous</button>
+            <button type="button" class="btn btn-primary btn-next">Next</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+    <div class="text-center mt-3">
+      <p>Need help? <a href="#">Contact support</a></p>
+    </div>
+  </div>
+
+  <script src="../js/validation.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script>
+    // Additional page-specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      // Populate disabled fields with data from previous page
+      const formData = JSON.parse(sessionStorage.getItem('formData') || '{}');
+      document.getElementById('firstName-disabled').value = formData.firstName || '';
+      document.getElementById('lastName-disabled').value = formData.lastName || '';
+      document.getElementById('dob-disabled').value = formData.dob || '';
+      
+      // Address search button
+      const searchBtn = document.getElementById('searchAddressBtn');
+      searchBtn.addEventListener('click', function() {
+        const searchInput = document.getElementById('addressSearch');
+        if (searchInput.value.trim() !== '') {
+          // Show address dropdown (in a real app, this would fetch addresses from an API)
+          document.getElementById('addressDropdownContainer').style.display = 'block';
+        } else {
+          searchInput.classList.add('is-invalid');
+        }
+      });
+      
+      // Enter manually link
+      const enterManuallyLink = document.getElementById('enterManuallyLink');
+      enterManuallyLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('addressDropdownContainer').style.display = 'none';
+        document.getElementById('manualAddressContainer').style.display = 'block';
+      });
+      
+      // Address dropdown change
+      const addressDropdown = document.getElementById('addressDropdown');
+      addressDropdown.addEventListener('change', function() {
+        if (this.value) {
+          // In a real app, this would populate the manual fields with the selected address
+          // For this prototype, we'll just hide the manual entry
+          document.getElementById('manualAddressContainer').style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
