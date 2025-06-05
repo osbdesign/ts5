@@ -38,7 +38,6 @@
   .container {
     padding: var(--spacing-xl);
   }
-  
   h1 {
     font-size: 2.5rem;
   }
@@ -53,37 +52,19 @@
   }
   
   .progress-bar {
-    height: 10px;
+    height: 4px;
   }
   
   .progress-steps {
     margin-top: var(--spacing-md);
+    
   }
   
   .progress-step {
     font-size: 0.875rem;
     position: relative;
   }
-  
-  .progress-step::before {
-    content: '';
-    position: absolute;
-    top: -1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background-color: var(--border-color);
-    border-radius: 50%;
-  }
-  
-  .progress-step.active::before {
-    background-color: var(--primary-color);
-  }
-  
-  .progress-step.completed::before {
-    background-color: var(--success-color);
-  }
+
   
   /* Form layout improvements */
   .form-group.inline {
@@ -140,11 +121,34 @@
   
   /* Maximum form width for readability */
   .form-container {
-    max-width: 900px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .progress-steps {
+    max-width: 1140px;
     margin-left: auto;
     margin-right: auto;
   }
 }
+
+@media (max-width: 767px) {
+      .form-layout {
+        flex-direction: column;
+      }
+      .form-layout > div:first-child {
+        margin-bottom: 0;
+      }
+      .form-layout > div:last-child {
+        margin-top: 0;
+      }
+
+        .form-50 .form-control {
+        width: 100%;
+      }
+  
+    }
 
 /* Print styles */
 @media print {

@@ -9,72 +9,144 @@
   <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
-  <div class="container">
-    <header class="text-center mb-4">
-      <h1>Registration Form</h1>
-    </header>
-
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress-bar-fill" style="width: 16.6%;"></div>
-      </div>
-      <div class="progress-steps">
-        <div class="progress-step active">Identity</div>
-        <div class="progress-step">Address</div>
-        <div class="progress-step">Email</div>
-        <div class="progress-step">Phone</div>
-        <div class="progress-step">Account</div>
-        <div class="progress-step">Confirmation</div>
+  <!-- Site Header -->
+  <div class="site-header">
+    <div class="container">
+      <div class="site-header-content">
+        <div class="site-logo">
+          <a href="../index.html">KR Bank</a>
+        </div>
+        <div class="site-nav">
+          <a href="#" class="support-link">Need support?</a>
+        </div>
       </div>
     </div>
+  </div>
+  
+  <div class="progress-container">
+    <div class="container">
+      <div class="progress-steps">
+        <div class="progress-step">
+          <div class="progress-bar"></div>
+          <div class="step-label active">Confirm your identity</div>
+        </div>
+        <div class="progress-step">
+          <div class="progress-bar"></div>
+          <div class="step-label">Verify your details</div>
+        </div>
+        <div class="progress-step">
+          <div class="progress-bar"></div>
+          <div class="step-label">Create your log in</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <header class="mb-4">
+      <div class="eyebrow">Register for Online Services</div>
+      <h1>Confirm your identity</h1>
+      <div class="divider" style="margin: 48px 0 58px 0;"></div>
+    </header>
 
     <form id="multi-step-form" novalidate>
       <div class="form-container">
         <div class="form-page" id="page1">
-          <h2>Identity Confirmation</h2>
-          <p class="mb-3">Please confirm your identity by providing the following information.</p>
+          <h2><span class="section-number">01</span>Personal details</h2>
+          <p class="mb-3">We'll match these with those on your account.</p>
+          <div class="divider" style="margin: 42px 0 42px 0;"></div>
           
-          <div class="form-row">
-            <div class="form-col">
+          <div class="form-layout" style="display: flex; gap: 20px;">
+            <div style="flex: 1;">
               <div class="form-group">
-                <label for="firstName" class="form-label">First Name</label>
-                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                <label for="firstName" class="form-label">First Name &#42</label>
+                <input type="text" placeholder="First name" id="firstName" name="firstName" class="form-control" required>
                 <div class="invalid-feedback">Please enter your first name</div>
               </div>
-            </div>
-            <div class="form-col">
+              
               <div class="form-group">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" id="lastName" name="lastName" class="form-control" required>
+                <label for="lastName" class="form-label">Last Name &#42</label>
+                <input type="text" id="lastName" placeholder="Last name" name="lastName" class="form-control" required>
                 <div class="invalid-feedback">Please enter your last name</div>
               </div>
+              
+              <div class="form-group">
+                <label class="form-label">Date of Birth (DD/MM/YYYY) &#42</label>
+                <div style="display: flex; gap: 10px;">
+                  <div style="flex: 1; max-width: 80px;">
+                    <input type="number" id="dobDay" name="dobDay" class="form-control" placeholder="DD" min="1" max="31" required>
+                  </div>
+                  <div style="flex: 1; max-width: 80px;">
+                    <input type="number" id="dobMonth" name="dobMonth" class="form-control" placeholder="MM" min="1" max="12" required>
+                  </div>
+                  <div style="flex: 2; max-width: 120px;">
+                    <input type="number" id="dobYear" name="dobYear" class="form-control" placeholder="YYYY" min="1900" max="2025" required>
+                  </div>
+                </div>
+                <div class="invalid-feedback">Please enter a valid date of birth</div>
+              </div>
             </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="middleName" class="form-label">Middle Name <span class="text-light">(optional)</span></label>
-            <input type="text" id="middleName" name="middleName" class="form-control">
-          </div>
-          
-          <div class="form-group">
-            <label for="dob" class="form-label">Date of Birth</label>
-            <input type="date" id="dob" name="dob" class="form-control" required>
-            <div class="invalid-feedback">Please enter your date of birth</div>
-            <span class="form-hint">Format: YYYY-MM-DD</span>
-          </div>
-          
-          <div class="form-navigation">
-            <button type="button" class="btn btn-outline btn-prev" style="display: none;">Previous</button>
-            <button type="button" class="btn btn-primary btn-next">Next</button>
+            
+            <div style="flex: 1;">
+              <div class="form-group">
+                <label for="middleName" class="form-label">Middle Name <span class="text-light">(optional)</span></label>
+                <input type="text" id="middleName" placeholder="Middle name" name="middleName" class="form-control">
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </form>
     
-    <div class="text-center mt-3">
-      <p>Need help? <a href="#">Contact support</a></p>
+    <div class="mt-4" style="text-align: right;">
+        <a href="../form-pages/page2.html" id="continueBtn" class="btn btn-primary btn-lg">Continue</a>
     </div>
+
+    <script>
+      // Save form data to sessionStorage when Continue button is clicked
+      document.addEventListener('DOMContentLoaded', function() {
+        const continueBtn = document.getElementById('continueBtn');
+        continueBtn.addEventListener('click', function(e) {
+          // Get form values
+          const firstName = document.getElementById('firstName').value;
+          const middleName = document.getElementById('middleName').value;
+          const lastName = document.getElementById('lastName').value;
+          const dobDay = document.getElementById('dobDay').value;
+          const dobMonth = document.getElementById('dobMonth').value;
+          const dobYear = document.getElementById('dobYear').value;
+          
+          // Save to sessionStorage
+          const formData = {
+            firstName: firstName,
+            middleName: middleName,
+            lastName: lastName,
+            dobDay: dobDay,
+            dobMonth: dobMonth,
+            dobYear: dobYear
+          };
+          
+          sessionStorage.setItem('formData', JSON.stringify(formData));
+        });
+      });
+    </script>
   </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-terms">
+        <p>By using this service, you agree to the KR Bank Terms of Service and Privacy Policy. All information provided must be accurate and complete.</p>
+        <p>KR Bank is authorized and regulated by the Financial Conduct Authority. Registration number: 123456.</p>
+        <p>For full terms and conditions, please visit our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <p>&copy; 2025 KR Bank. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="../js/validation.js"></script>
   <script src="../js/navigation.js"></script>

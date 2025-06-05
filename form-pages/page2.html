@@ -5,92 +5,166 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Prototype - Address Information</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
-  <div class="container">
-    <header class="text-center mb-4">
-      <h1>Registration Form</h1>
-    </header>
-
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress-bar-fill" style="width: 33.2%;"></div>
-      </div>
-      <div class="progress-steps">
-        <div class="progress-step completed">Identity</div>
-        <div class="progress-step active">Address</div>
-        <div class="progress-step">Email</div>
-        <div class="progress-step">Phone</div>
-        <div class="progress-step">Account</div>
-        <div class="progress-step">Confirmation</div>
+    <!-- Site Header -->
+  <div class="site-header">
+    <div class="container">
+      <div class="site-header-content">
+        <div class="site-logo">
+          <a href="../index.html">KR Bank</a>
+        </div>
+        <div class="site-nav">
+          <a href="#" class="support-link">Need support?</a>
+        </div>
       </div>
     </div>
+  </div>
+  
+  <div class="progress-container">
+    <div class="container">
+      <div class="progress-steps">
+        <div class="progress-step">
+          <div class="progress-bar progress-bar-filled"></div>
+          <div class="step-label active">Confirm your identity</div>
+        </div>
+        <div class="progress-step">
+          <div class="progress-bar"></div>
+          <div class="step-label">Verify your details</div>
+        </div>
+        <div class="progress-step">
+          <div class="progress-bar"></div>
+          <div class="step-label">Create your log in</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <form id="multi-step-form" novalidate>
+  <div class="container">
+
+    <header class="mb-4">
+      <div class="eyebrow">Register for Online Services</div>
+      <h1>Confirm your identity</h1>
+      <div class="divider" style="margin: 48px 0 58px 0;"></div>
+    </header>
+
+    <form id="personal-details-form" novalidate>
       <div class="form-container">
-        <div class="form-page" id="page2">
-          <h2>Address Information</h2>
-          <p class="mb-3">Please provide your home address.</p>
+        <div id="personal-details">
+          <h2><span class="section-number">01</span>Personal details</h2>
+          <p class="mb-3">We'll match these with those on your account.</p>
+          <div class="divider" style="margin: 42px 0 42px 0;"></div>
           
-          <!-- Previous information (disabled) -->
-          <div class="card mb-3">
-            <h3 class="card-title">Identity Information</h3>
-            <div class="form-row">
-              <div class="form-col">
-                <div class="form-group">
-                  <label for="firstName-disabled" class="form-label">First Name</label>
-                  <input type="text" id="firstName-disabled" class="form-control" disabled>
-                </div>
+          <div class="form-layout" style="display: flex; gap: 20px;">
+            <div style="flex: 1;">
+              <div class="form-group">
+                <label for="firstName-disabled" class="form-label">First Name</label>
+                <input type="text" id="firstName-disabled" name="firstName" class="form-control" disabled>
               </div>
-              <div class="form-col">
-                <div class="form-group">
-                  <label for="lastName-disabled" class="form-label">Last Name</label>
-                  <input type="text" id="lastName-disabled" class="form-control" disabled>
+              
+              <div class="form-group">
+                <label for="lastName-disabled" class="form-label">Last Name</label>
+                <input type="text" id="lastName-disabled" name="lastName" class="form-control" disabled>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Date of Birth</label>
+                <div style="display: flex; gap: 10px;">
+                  <div style="flex: 1; max-width: 80px;">
+                    <input type="number" id="dobDay-disabled" name="dobDay" class="form-control" placeholder="DD" disabled>
+                  </div>
+                  <div style="flex: 1; max-width: 80px;">
+                    <input type="number" id="dobMonth-disabled" name="dobMonth" class="form-control" placeholder="MM" disabled>
+                  </div>
+                  <div style="flex: 2; max-width: 120px;">
+                    <input type="number" id="dobYear-disabled" name="dobYear" class="form-control" placeholder="YYYY" disabled>
+                  </div>
                 </div>
               </div>
             </div>
             
-            <div class="form-group mb-0">
-              <label for="dob-disabled" class="form-label">Date of Birth</label>
-              <input type="date" id="dob-disabled" class="form-control" disabled>
+            <div style="flex: 1;">
+              <div class="form-group">
+                <label for="middleName-disabled" class="form-label">Middle Name</label>
+                <input type="text" id="middleName-disabled" name="middleName" class="form-control" disabled>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+    </form>
+
+    <form id="multi-step-form" novalidate>
+      <div class="form-container">
+        <div class="form-page" id="page2">
+          <h2><span class="section-number">02</span>Home address</h2>
+          <p class="mb-3">This should match the address we hold for you.</p>
+          <div class="divider" style="margin: 42px 0 42px 0;"></div>
           
           <!-- Address search -->
-          <div class="form-group">
-            <label for="addressSearch" class="form-label">Search for your address</label>
-            <div class="form-row">
-              <div class="form-col" style="flex: 3;">
-                <input type="text" id="addressSearch" name="addressSearch" class="form-control" placeholder="Enter your postcode" required>
-                <div class="invalid-feedback">Please enter your postcode to search</div>
+          <div class="form-group" id="addressSearchContainer">
+            <label for="addressSearch" class="form-label">Search for your address &#42</label>
+            <div class="address-search-container">
+              <div class="search-input-wrapper">
+                <span class="material-icons-outlined icon-m search-icon">search</span>
+                <input type="text" id="addressSearch" name="addressSearch" class="form-control" placeholder="Start typing address or postcode" autocomplete="off" required>
               </div>
-              <div class="form-col" style="flex: 1;">
-                <button type="button" id="searchAddressBtn" class="btn btn-primary" style="width: 100%;">Search</button>
+              <div class="invalid-feedback">Please select an address</div>
+              <a href="#" id="enterManuallyLink" class="change-address-link">Enter address manually ›</a>
+              
+              <!-- Address dropdown (initially hidden, shown as user types) -->
+              <div class="address-dropdown" id="addressDropdown" style="display: none;">
+                <div class="address-group" data-group="Page Road Market">
+                  <div class="address-group-header">
+                    <span>Page Road Market</span>
+                    <span class="address-count">- 25 Addresses</span>
+                    <span class="expand-icon">›</span>
+                  </div>
+                </div>
+                <div class="address-group" data-group="Page Close">
+                  <div class="address-group-header">
+                    <span>Page Close</span>
+                    <span class="address-count">- 10 Addresses</span>
+                    <span class="expand-icon">›</span>
+                  </div>
+                </div>
+                <div class="address-group" data-group="Page Gardens">
+                  <div class="address-group-header">
+                    <span>Page Gardens</span>
+                    <span class="address-count">- 2 Addresses</span>
+                    <span class="expand-icon">›</span>
+                  </div>
+                </div>
+                <div class="address-item" data-address="34 Page St, London SW1P 4ES">
+                  <span>34 Page St, London SW1P 4ES</span>
+                </div>
               </div>
             </div>
           </div>
           
-          <!-- Address dropdown (initially hidden, shown after search) -->
-          <div class="form-group" id="addressDropdownContainer" style="display: none;">
-            <label for="addressDropdown" class="form-label">Select your address</label>
-            <select id="addressDropdown" name="address" class="form-control" required>
-              <option value="">Please select your address</option>
-              <option value="address1">123 Main Street, London, SW1A 1AA</option>
-              <option value="address2">125 Main Street, London, SW1A 1AB</option>
-              <option value="address3">127 Main Street, London, SW1A 1AC</option>
-              <option value="address4">129 Main Street, London, SW1A 1AD</option>
-              <option value="address5">131 Main Street, London, SW1A 1AE</option>
-            </select>
-            <div class="invalid-feedback">Please select your address</div>
-            <span class="form-hint mt-1">Can't find your address? <a href="#" id="enterManuallyLink">Enter manually</a></span>
+          <!-- Selected address display (initially hidden) -->
+          <div id="selectedAddressContainer" style="display: none;">
+            <h3>Your address</h3>
+            <div class="selected-address-box">
+              <div id="selectedAddressContent">
+                <p>Flat 30</p>
+                <p>Page Court House</p>
+                <p>25-35 Page Street</p>
+                <p>SW1 2PP</p>
+                <p>London</p>
+              </div>
+              <a href="#" id="removeAddressLink" class="remove-address-link">Remove address</a>
+            </div>
+            <a href="#" id="changeAddressLink" class="change-address-link">Change address ›</a>
           </div>
           
           <!-- Manual address entry (initially hidden) -->
           <div id="manualAddressContainer" style="display: none;">
             <div class="form-group">
-              <label for="addressLine1" class="form-label">Address Line 1</label>
+              <label for="addressLine1" class="form-label">Address Line 1 &#42</label>
               <input type="text" id="addressLine1" name="addressLine1" class="form-control" required>
               <div class="invalid-feedback">Please enter your address</div>
             </div>
@@ -103,32 +177,29 @@
             <div class="form-row">
               <div class="form-col">
                 <div class="form-group">
-                  <label for="city" class="form-label">City/Town</label>
+                  <label for="city" class="form-label">City/Town &#42</label>
                   <input type="text" id="city" name="city" class="form-control" required>
                   <div class="invalid-feedback">Please enter your city/town</div>
                 </div>
               </div>
               <div class="form-col">
                 <div class="form-group">
-                  <label for="postcode" class="form-label">Postcode</label>
+                  <label for="postcode" class="form-label">Postcode &#42</label>
                   <input type="text" id="postcode" name="postcode" class="form-control" required data-validate="postcode">
                   <div class="invalid-feedback">Please enter a valid postcode</div>
                 </div>
               </div>
             </div>
+            <a href="#" id="searchAddressLink" class="change-address-link">Search for address ›</a>
           </div>
-          
-          <div class="form-navigation">
-            <button type="button" class="btn btn-outline btn-prev">Previous</button>
-            <button type="button" class="btn btn-primary btn-next">Next</button>
           </div>
         </div>
+        <div class="mt-4" style="text-align: right;">
+        <button type="button" id="continueBtn" class="btn btn-primary btn-lg">Continue</button>
+      </div>
       </div>
     </form>
     
-    <div class="text-center mt-3">
-      <p>Need help? <a href="#">Contact support</a></p>
-    </div>
   </div>
 
   <script src="../js/validation.js"></script>
@@ -136,42 +207,260 @@
   <script>
     // Additional page-specific JavaScript
     document.addEventListener('DOMContentLoaded', function() {
+      // Ensure the address form is visible
+      document.getElementById('page2').style.display = 'block';
+      
       // Populate disabled fields with data from previous page
       const formData = JSON.parse(sessionStorage.getItem('formData') || '{}');
       document.getElementById('firstName-disabled').value = formData.firstName || '';
+      document.getElementById('middleName-disabled').value = formData.middleName || '';
       document.getElementById('lastName-disabled').value = formData.lastName || '';
-      document.getElementById('dob-disabled').value = formData.dob || '';
+      document.getElementById('dobDay-disabled').value = formData.dobDay || '';
+      document.getElementById('dobMonth-disabled').value = formData.dobMonth || '';
+      document.getElementById('dobYear-disabled').value = formData.dobYear || '';
       
-      // Address search button
-      const searchBtn = document.getElementById('searchAddressBtn');
-      searchBtn.addEventListener('click', function() {
-        const searchInput = document.getElementById('addressSearch');
-        if (searchInput.value.trim() !== '') {
-          // Show address dropdown (in a real app, this would fetch addresses from an API)
-          document.getElementById('addressDropdownContainer').style.display = 'block';
+      // Address search functionality
+      const addressSearch = document.getElementById('addressSearch');
+      const addressDropdown = document.getElementById('addressDropdown');
+      const selectedAddressContainer = document.getElementById('selectedAddressContainer');
+      const manualAddressContainer = document.getElementById('manualAddressContainer');
+      
+      // Show dropdown when user types in search field
+      addressSearch.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+          addressDropdown.style.display = 'block';
         } else {
-          searchInput.classList.add('is-invalid');
+          addressDropdown.style.display = 'none';
+        }
+        
+        // Clear any existing validation errors when user starts typing
+        if (this.classList.contains('is-invalid')) {
+          this.classList.remove('is-invalid');
+          const feedbackElement = this.parentNode.parentNode.querySelector('.invalid-feedback');
+          if (feedbackElement) {
+            feedbackElement.style.display = 'none';
+          }
         }
       });
       
-      // Enter manually link
-      const enterManuallyLink = document.getElementById('enterManuallyLink');
-      enterManuallyLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('addressDropdownContainer').style.display = 'none';
-        document.getElementById('manualAddressContainer').style.display = 'block';
+      // Focus on search field shows dropdown
+      addressSearch.addEventListener('focus', function() {
+        if (this.value.trim() !== '') {
+          addressDropdown.style.display = 'block';
+        }
       });
       
-      // Address dropdown change
-      const addressDropdown = document.getElementById('addressDropdown');
-      addressDropdown.addEventListener('change', function() {
-        if (this.value) {
-          // In a real app, this would populate the manual fields with the selected address
-          // For this prototype, we'll just hide the manual entry
-          document.getElementById('manualAddressContainer').style.display = 'none';
+      // Handle clicks on address groups
+      const addressGroups = document.querySelectorAll('.address-group-header');
+      addressGroups.forEach(group => {
+        group.addEventListener('click', function() {
+          // In a real app, this would expand to show addresses in this group
+          // For this prototype, we'll just select a predefined address
+          selectAddress('Flat 30, Page Court House, 25-35 Page Street, SW1 2PP, London');
+        });
+      });
+      
+      // Handle clicks on address items
+      const addressItems = document.querySelectorAll('.address-item');
+      addressItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const address = this.getAttribute('data-address');
+          selectAddress(address);
+        });
+      });
+      
+      // Function to select an address
+      function selectAddress(address) {
+        // Hide dropdown and search container
+        addressDropdown.style.display = 'none';
+        addressSearchContainer.style.display = 'none';
+        addressSearch.value = '';
+        
+        // Show selected address container
+        selectedAddressContainer.style.display = 'block';
+        
+        // Mark address as selected and clear any validation errors
+        addressSearch.setAttribute('data-address-selected', 'true');
+        addressSearch.classList.remove('is-invalid');
+        const feedbackElement = addressSearch.parentNode.parentNode.querySelector('.invalid-feedback');
+        if (feedbackElement) {
+          feedbackElement.style.display = 'none';
+        }
+        
+        // In a real app, we would parse the address and display it properly
+        // For this prototype, we'll just use our predefined content
+      }
+      
+      // Handle remove address link
+      const removeAddressLink = document.getElementById('removeAddressLink');
+      removeAddressLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        selectedAddressContainer.style.display = 'none';
+        addressSearchContainer.style.display = 'block';
+        addressSearch.value = '';
+        addressSearch.removeAttribute('data-address-selected');
+        addressSearch.focus();
+      });
+      
+      // Handle change address link
+      const changeAddressLink = document.getElementById('changeAddressLink');
+      changeAddressLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        selectedAddressContainer.style.display = 'none';
+        addressSearchContainer.style.display = 'block';
+        addressSearch.value = '';
+        addressSearch.removeAttribute('data-address-selected');
+        addressSearch.focus();
+      });
+      
+      // Handle manual address entry toggle
+      const enterManuallyLink = document.getElementById('enterManuallyLink');
+      const searchAddressLink = document.getElementById('searchAddressLink');
+      const addressSearchContainer = document.getElementById('addressSearchContainer');
+      
+      if (enterManuallyLink) {
+        enterManuallyLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Hide address search and dropdown
+          addressSearchContainer.style.display = 'none';
+          addressDropdown.style.display = 'none';
+          selectedAddressContainer.style.display = 'none';
+          
+          // Show manual address container
+          manualAddressContainer.style.display = 'block';
+          
+          // Clear any validation errors on the search field
+          addressSearch.classList.remove('is-invalid');
+          const feedbackElement = addressSearch.parentNode.parentNode.querySelector('.invalid-feedback');
+          if (feedbackElement) {
+            feedbackElement.style.display = 'none';
+          }
+          
+          // Focus on first manual input field
+          document.getElementById('addressLine1').focus();
+        });
+      }
+      
+      if (searchAddressLink) {
+        searchAddressLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Hide manual address container
+          manualAddressContainer.style.display = 'none';
+          
+          // Show address search container
+          addressSearchContainer.style.display = 'block';
+          
+          // Clear manual address fields and their validation states
+          const manualFields = ['addressLine1', 'addressLine2', 'city', 'postcode'];
+          manualFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+              field.value = '';
+              field.classList.remove('is-invalid');
+              const feedback = field.parentNode.querySelector('.invalid-feedback');
+              if (feedback) feedback.style.display = 'none';
+            }
+          });
+          
+          // Focus on search field
+          addressSearch.focus();
+        });
+      }
+      
+      // Save manual address
+      const saveManualAddressBtn = document.getElementById('saveManualAddressBtn');
+      if (saveManualAddressBtn) {
+        saveManualAddressBtn.addEventListener('click', function() {
+          // Validate manual address fields
+          const addressLine1 = document.getElementById('addressLine1');
+          const city = document.getElementById('city');
+          const postcode = document.getElementById('postcode');
+          
+          let isValid = true;
+          
+          // Validate required fields
+          [addressLine1, city, postcode].forEach(field => {
+            if (!field.value.trim()) {
+              field.classList.add('is-invalid');
+              const feedback = field.parentNode.querySelector('.invalid-feedback');
+              if (feedback) feedback.style.display = 'block';
+              isValid = false;
+            } else {
+              field.classList.remove('is-invalid');
+              const feedback = field.parentNode.querySelector('.invalid-feedback');
+              if (feedback) feedback.style.display = 'none';
+            }
+          });
+          
+          if (isValid) {
+            // Mark address as selected
+            addressSearch.setAttribute('data-address-selected', 'true');
+            addressSearch.classList.remove('is-invalid');
+            const feedbackElement = addressSearch.parentNode.parentNode.querySelector('.invalid-feedback');
+            if (feedbackElement) {
+              feedbackElement.style.display = 'none';
+            }
+            
+            // Hide manual entry and show selected address
+            manualAddressContainer.style.display = 'none';
+            selectedAddressContainer.style.display = 'block';
+          }
+        });
+      }
+      
+      // Handle Continue button
+      const continueBtn = document.getElementById('continueBtn');
+      continueBtn.addEventListener('click', function() {
+        // Check if an address has been selected
+        const hasSelectedAddress = addressSearch.hasAttribute('data-address-selected');
+        
+        if (!hasSelectedAddress) {
+          // Show error
+          addressSearch.classList.add('is-invalid');
+          const feedbackElement = addressSearch.parentNode.parentNode.querySelector('.invalid-feedback');
+          if (feedbackElement) {
+            feedbackElement.style.display = 'block';
+          }
+          
+          // Scroll to the error
+          addressSearch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          addressSearch.focus();
+          return;
+        }
+        
+        // If address is selected, save data and proceed
+        const formData = JSON.parse(sessionStorage.getItem('formData') || '{}');
+        formData.addressSelected = true;
+        sessionStorage.setItem('formData', JSON.stringify(formData));
+        
+        // Navigate to next page
+        window.location.href = '../form-pages/page3.html';
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!addressSearch.contains(e.target) && !addressDropdown.contains(e.target)) {
+          addressDropdown.style.display = 'none';
         }
       });
     });
   </script>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-terms">
+        <p>By using this service, you agree to the KR Bank Terms of Service and Privacy Policy. All information provided must be accurate and complete.</p>
+        <p>KR Bank is authorized and regulated by the Financial Conduct Authority. Registration number: 123456.</p>
+        <p>For full terms and conditions, please visit our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <p>&copy; 2025 KR Bank. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
+

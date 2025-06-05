@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nominated Account Details - KR Bank</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .sort-code-inputs {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .sort-code-input {
+      width: 60px;
+      text-align: center;
+      font-family: monospace;
+      font-size: 16px;
+    }
+    
+    .sort-code-separator {
+      font-weight: bold;
+      color: #666;
+      font-size: 18px;
+    }
+    
+    .info-text {
+      font-size: 14px;
+      color: #666;
+      margin-top: 8px;
+      font-style: italic;
+      margin-bottom: 36px;
+    }
+    
+    .account-info {
+      background-color: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    
+    .account-info h3 {
+      margin: 0 0 16px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .account-info p {
+      margin: 0 0 8px 0;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Site Header -->
+  <div class="site-header">
+    <div class="container">
+      <div class="site-header-content">
+        <div class="site-logo">
+          <a href="index.html">KR Bank</a>
+        </div>
+        <div class="site-nav">
+          <a href="#" class="support-link">Need support?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <header class="mb-4" style="margin-top: 48px;">
+      <h1>Please update your details</h1>
+      <p class="subtitle">We need this information before you go to your accounts.</p>
+      <div class="divider" style="margin: 48px 0 58px 0;"></div>
+    </header>
+
+    <div class="form-container">
+      <h2>Please provide your Nominated Account details</h2>
+      <div class="divider" style="margin: 42px 0 42px 0;"></div>
+      <p>This must be a personal current account held in your name with another UK* bank or building society. Your Nominated Account will be used to transfer your money into and out of your savings account with us.</p>
+      <p class="info-text">*The UK does not include the Channel Islands and the Isle of Man.</p>
+      <form id="nominatedAccountForm" novalidate>
+        <div class="form-group">
+          <label class="form-label">SORT CODE &#42</label>
+          <div class="sort-code-inputs">
+            <input type="text" id="sortCode1" name="sortCode1" class="form-control sort-code-input" maxlength="2" pattern="[0-9]{2}">
+            <span class="sort-code-separator">-</span>
+            <input type="text" id="sortCode2" name="sortCode2" class="form-control sort-code-input" maxlength="2" pattern="[0-9]{2}">
+            <span class="sort-code-separator">-</span>
+            <input type="text" id="sortCode3" name="sortCode3" class="form-control sort-code-input" maxlength="2" pattern="[0-9]{2}">
+          </div>
+          <div class="invalid-feedback">Please enter a valid sort code</div>
+        </div>
+
+        <div class="form-group">
+          <label for="accountNumber" class="form-label">ACCOUNT NUMBER &#42</label>
+          <input style="max-width: 420px;" type="text" id="accountNumber" name="accountNumber" class="form-control" placeholder="Account number" maxlength="8" pattern="[0-9]{8}" required>
+          <div class="invalid-feedback">Please enter a valid 8-digit account number</div>
+        </div>
+      </form>
+    </div>
+    <div class="mt-4" style="text-align: right;">
+        <button type="submit" id="continueBtn" class="btn btn-primary btn-lg">Continue</button>
+      </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-terms">
+        <p>By using this service, you agree to the KR Bank Terms of Service and Privacy Policy. All information provided must be accurate and complete.</p>
+        <p>KR Bank is authorized and regulated by the Financial Conduct Authority. Registration number: 123456.</p>
+        <p>For full terms and conditions, please visit our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <p>&copy; 2025 KR Bank. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/validation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('nominatedAccountForm');
+      const sortCode1 = document.getElementById('sortCode1');
+      const sortCode2 = document.getElementById('sortCode2');
+      const sortCode3 = document.getElementById('sortCode3');
+      const accountNumber = document.getElementById('accountNumber');
+      
+      // Auto-advance between sort code fields
+      function setupAutoAdvance(currentField, nextField) {
+        currentField.addEventListener('input', function() {
+          // Only allow numbers
+          this.value = this.value.replace(/[^0-9]/g, '');
+          
+          // Auto-advance to next field when current is full
+          if (this.value.length === this.maxLength && nextField) {
+            nextField.focus();
+          }
+        });
+        
+        // Handle backspace to go to previous field
+        currentField.addEventListener('keydown', function(e) {
+          if (e.key === 'Backspace' && this.value === '' && this !== sortCode1) {
+            const prevField = this === sortCode3 ? sortCode2 : sortCode1;
+            prevField.focus();
+          }
+        });
+      }
+      
+      // Set up auto-advance for sort code fields
+      setupAutoAdvance(sortCode1, sortCode2);
+      setupAutoAdvance(sortCode2, sortCode3);
+      setupAutoAdvance(sortCode3, accountNumber);
+      
+      // Account number validation
+      accountNumber.addEventListener('input', function() {
+        // Only allow numbers
+        this.value = this.value.replace(/[^0-9]/g, '');
+      });
+      
+      // Form validation and submission
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let isValid = true;
+        
+        // Validate sort code
+        const sortCodeParts = [sortCode1.value, sortCode2.value, sortCode3.value];
+        const sortCodeValid = sortCodeParts.every(part => part.length === 2 && /^\d{2}$/.test(part));
+        
+        if (!sortCodeValid) {
+          [sortCode1, sortCode2, sortCode3].forEach(field => {
+            field.classList.add('is-invalid');
+          });
+          document.querySelector('.sort-code-inputs').parentNode.querySelector('.invalid-feedback').style.display = 'block';
+          isValid = false;
+        } else {
+          [sortCode1, sortCode2, sortCode3].forEach(field => {
+            field.classList.remove('is-invalid');
+          });
+          document.querySelector('.sort-code-inputs').parentNode.querySelector('.invalid-feedback').style.display = 'none';
+        }
+        
+        // Validate account number
+        if (!/^\d{8}$/.test(accountNumber.value)) {
+          accountNumber.classList.add('is-invalid');
+          accountNumber.parentNode.querySelector('.invalid-feedback').style.display = 'block';
+          isValid = false;
+        } else {
+          accountNumber.classList.remove('is-invalid');
+          accountNumber.parentNode.querySelector('.invalid-feedback').style.display = 'none';
+        }
+        
+        if (isValid) {
+          // Save nominated account details
+          const formData = JSON.parse(sessionStorage.getItem('formData') || '{}');
+          formData.nominatedAccount = {
+            sortCode: sortCodeParts.join('-'),
+            accountNumber: accountNumber.value
+          };
+          sessionStorage.setItem('formData', JSON.stringify(formData));
+          
+          // Navigate to final confirmation or dashboard
+          alert('Form completed successfully! All data has been saved.');
+          console.log('Complete form data:', formData);
+        } else {
+          // Scroll to first error
+          const firstError = document.querySelector('.is-invalid');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstError.focus();
+          }
+        }
+      });
+      
+      // Clear validation errors on input
+      [sortCode1, sortCode2, sortCode3].forEach(field => {
+        field.addEventListener('input', function() {
+          if (this.classList.contains('is-invalid')) {
+            this.classList.remove('is-invalid');
+            document.querySelector('.sort-code-inputs').parentNode.querySelector('.invalid-feedback').style.display = 'none';
+          }
+        });
+      });
+      
+      accountNumber.addEventListener('input', function() {
+        if (this.classList.contains('is-invalid')) {
+          this.classList.remove('is-invalid');
+          this.parentNode.querySelector('.invalid-feedback').style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

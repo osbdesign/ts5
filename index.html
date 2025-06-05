@@ -5,40 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Prototype - Start</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Material Icons (Outlined) -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
-  <div class="container">
-    <header class="text-center mb-4">
-      <h1>Application Form</h1>
-      <p class="mb-3">Complete this form to submit your application</p>
+<body style="background-color: #fafafa;">
+  <!-- Site Header -->
+  <div class="site-header">
+    <div class="container">
+      <div class="site-header-content">
+        <div class="site-logo">
+          <a href="index.html">KR Bank</a>
+        </div>
+        <div class="site-nav">
+          <a href="#" class="support-link">Need support?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container main-content">
+    <header class="mb-4" style="margin-top: 32px;
+    margin-bottom: 60px;">
+      <h1>Register for our new Online Services</h1>
+      <p class="mb-3">Please register for our new Online Services - this should take you around 5 minutes.</p>
     </header>
 
     <div class="card">
-      <h2>Before You Begin</h2>
-      <p>This form will guide you through the application process. Please have the following information ready:</p>
+      <div class="card-grid">
+        <div class="card-column" style="margin-bottom: 0;">
+          <p>We've moved your account to our new online banking site. This gives you:</p>
+          <ul class="mb-3 icon-list">
+            <li><span class="material-icons-outlined icon-m">check</span> Improved account security</li>
+            <li><span class="material-icons-outlined icon-m">check</span> Confirmation of payee for deposits</li>
+            <li><span class="material-icons-outlined icon-m">check</span> Faster deposit processing</li>
+          </ul>
+          <p><a href="#" style="text-decoration: underline;">Find out more</a></p>
+        </div>
+        <div class="card-column" style="background-color: #fafafa; display: flex; align-items: center;">
+          <div>
+            <p class="subtitle" style="font-weight: bold;">What you'll need to register:</p>
+            <ul class="mb-3 icon-list">
+              <li><span class="material-icons-outlined icon-m">article</span> The address on your account</li>
+              <li><span class="material-icons-outlined icon-m">smartphone</span> Access to your email and mobile number</li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
       
-      <ul class="mb-3">
-        <li>Personal details (name, contact information)</li>
-        <li>Address information</li>
-        <li>Employment details</li>
-        <li>Supporting documents (if applicable)</li>
-      </ul>
-      
-      <p class="mb-3">The form consists of multiple steps and will take approximately 5-10 minutes to complete.</p>
-      
-      <p class="mb-3">You can save your progress at any time and return later to complete the application.</p>
-      
-      <div class="text-center mt-4">
-        <a href="form-pages/page1.html" class="btn btn-primary btn-lg">Start Application</a>
+      <div class="mt-4">
+        <a href="form-pages/page1.html" class="btn btn-primary btn-lg">Start</a>
       </div>
     </div>
-    
-    <div class="text-center mt-3">
-      <p>Need help? <a href="#">Contact support</a></p>
-    </div>
   </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-terms">
+        <p>By using this service, you agree to the KR Bank Terms of Service and Privacy Policy. All information provided must be accurate and complete.</p>
+        <p>KR Bank is authorized and regulated by the Financial Conduct Authority. Registration number: 123456.</p>
+        <p>For full terms and conditions, please visit our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <p>&copy; 2025 KR Bank. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     // Clear any previous form data when starting a new application

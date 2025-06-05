@@ -7,81 +7,175 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .success-icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    
+    .success-icon-circle {
+      width: 64px;
+      height: 64px;
+      background-color: #E8F5E9;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .success-icon-check {
+      color: #4CAF50;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    
+    .success-heading {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 48px;
+      color: #333;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .info-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 32px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    
+    .info-item {
+      display: flex;
+      padding: 32px;
+      background-color: #f8f9fa;
+      margin: 16px;
+      border-radius: 8px;
+    }
+    
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      margin-right: 24px;
+      color: var(--primary-color);
+    }
+    
+    .info-content {
+      flex: 1;
+    }
+    
+    .info-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    
+    .info-description {
+      color: #666;
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    .continue-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+      margin-bottom: 64px;
+    }
+    
+    .continue-button .btn {
+      min-width: 240px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header class="text-center mb-4">
-      <h1>Registration Form</h1>
-    </header>
-
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress-bar-fill" style="width: 100%;"></div>
-      </div>
-      <div class="progress-steps">
-        <div class="progress-step completed">Identity</div>
-        <div class="progress-step completed">Address</div>
-        <div class="progress-step completed">Email</div>
-        <div class="progress-step completed">Phone</div>
-        <div class="progress-step completed">Account</div>
-        <div class="progress-step completed">Confirmation</div>
-      </div>
-    </div>
-
-    <div class="form-container">
-      <div class="text-center mb-4">
-        <h2>You've Successfully Registered!</h2>
-        <p class="mb-3">Thank you for completing the registration process.</p>
-      </div>
-      
-      <div class="card-grid">
-        <!-- Bank details card -->
-        <div class="card">
-          <h3 class="card-title">You've Got New Bank Details</h3>
-          <p>Your new account has been set up with the following details:</p>
-          <div class="mb-2">
-            <strong>Account Number:</strong> <span id="accountNumber">XXXX XXXX XXXX 1234</span>
-          </div>
-          <div class="mb-2">
-            <strong>Sort Code:</strong> <span id="sortCode">XX-XX-XX</span>
-          </div>
-          <p class="mb-2">You can access your online banking immediately using the username you created.</p>
-          <div class="text-center mt-3">
-            <a href="#" class="btn btn-primary">Go to Online Banking</a>
-          </div>
+  <!-- Site Header -->
+  <div class="site-header">
+    <div class="container">
+      <div class="site-header-content">
+        <div class="site-logo">
+          <a href="index.html">KR Bank</a>
         </div>
-        
-        <!-- Account details card -->
-        <div class="card">
-          <h3 class="card-title">Make Sure Your Account Details Are Up to Date</h3>
-          <p>It's important to keep your account information current:</p>
-          <ul>
-            <li>Verify your contact information is correct</li>
-            <li>Set up additional security features</li>
-            <li>Configure your notification preferences</li>
-            <li>Add any additional account holders</li>
-          </ul>
-          <p class="mb-2">You can update your details at any time through your account settings.</p>
-          <div class="text-center mt-3">
-            <a href="#" class="btn btn-outline">Update Account Settings</a>
-          </div>
+        <div class="site-nav">
+          <a href="#" class="support-link">Need support?</a>
         </div>
       </div>
-      
-      <div class="text-center mt-4">
-        <a href="index.html" class="btn btn-primary">Return to Home</a>
-      </div>
-    </div>
-    
-    <div class="text-center mt-3">
-      <p>Need help? <a href="#">Contact support</a></p>
     </div>
   </div>
 
+  <div class="container">
+    <!-- Success Icon -->
+    <div class="success-icon">
+      <div class="success-icon-circle">
+        <span class="success-icon-check">✓</span>
+      </div>
+    </div>
+    
+    <!-- Success Heading -->
+    <h1 class="success-heading">You've successfully registered for our new Online Services</h1>
+    
+    <!-- Info Card -->
+    <div class="info-card">
+      <!-- Standing Orders Item -->
+      <div class="info-item">
+        <div class="info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+          </svg>
+        </div>
+        <div class="info-content">
+          <h3 class="info-title">Update your payment details</h3>
+          <p class="info-description">If you made one-off payments or used a standing order, please update the sort code and account number of your new account. This will make sure your payments are deposited correctly.</p>
+          <p class="info-description"><br>Your payments will be returned if you don't update your sort code and account number.</p>
+        </div>
+      </div>
+      
+      <!-- Account Details Item -->
+      <div class="info-item">
+        <div class="info-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 5c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+          </svg>
+        </div>
+        <div class="info-content">
+          <h3 class="info-title">Update your account details</h3>
+          <p class="info-description">If we're missing details, we'll ask for them next time you log in</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Continue Button -->
+    <div class="continue-button">
+      <a href="marketing-preferences.html" class="btn btn-primary">Continue</a>
+    </div>
+  </div>
+    
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-terms">
+        <p>By using this service, you agree to the KR Bank Terms of Service and Privacy Policy. All information provided must be accurate and complete.</p>
+        <p>KR Bank is authorized and regulated by the Financial Conduct Authority. Registration number: 123456.</p>
+        <p>For full terms and conditions, please visit our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <p>&copy; 2025 KR Bank. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Clear form data from session storage since registration is complete
-      sessionStorage.removeItem('formData');
+      // Keep form data in session storage for the additional pages
+      // Data will be cleared after the final step
     });
   </script>
 </body>
