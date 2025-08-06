@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We're upgrading Online Services for you</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    /* Custom styles for this page */
+    .upgrade-header {
+      background: #50213F;
+      color: white;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .upgrade-nav {
+      background: #643B55;
+      padding: 12px 0;
+      margin: 24px 120px;
+      border-radius: 24px;
+    }
+
+    .upgrade-nav .container {
+      padding: 0;
+    }
+    
+    .upgrade-nav-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 24px;
+      gap: 48px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: flex-end;
+    }
+    
+    .nav-links a:hover {
+      color: white;
+      text-decoration: none;
+    }
+    
+    .nav-dropdown::after {
+      content: "\2304";
+      margin-left: 4px;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    
+    .nav-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      text-decoration: none;
+      color: white;
+      background: #B73764;
+    }
+    
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+    }
+    
+    .nav-btn.primary {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .breadcrumb {
+      padding: 16px 0;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .breadcrumb a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: underline;
+    }
+    
+    .hero-section {
+      padding: 40px 0 60px 0;
+    }
+    
+    .hero-title {
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    
+    .hero-subtitle {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0;
+    }
+    
+    .content-section {
+      background: #f8f9fa;
+      padding: 60px 0;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    
+    .feature-image {
+      background: #c4c4c4;
+      height: 285px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .feature-image img {
+      width: 100%;
+      height: auto;
+      max-height: 450px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    
+    .action-card img {
+      width: 100%;
+      height: auto;
+      max-height: 74px;
+      object-fit: contain;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    
+    .features-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .features-list li::before {
+      content: "✓";
+      color: #28a745;
+      font-weight: bold;
+      margin-right: 12px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    
+    .fscs-badge {
+      display: flex;
+      align-items: center;
+      margin-top: 24px;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .fscs-logo {
+      width: 40px;
+      height: 20px;
+      background: #003366;
+      margin-right: 8px;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+    }
+    
+    .action-section {
+      background: linear-gradient(135deg, #c85a7a 0%, #b73764 100%);
+      color: white;
+      padding: 60px 0;
+    }
+    
+    .action-content h2 {
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+    
+    .action-list {
+      list-style: none;
+      margin: 0 0 40px 0;
+      padding: 0;
+    }
+    
+    .action-list li {
+      margin-bottom: 8px;
+      font-size: 14px;
+      padding-left: 16px;
+      position: relative;
+    }
+    
+    .action-list li::before {
+      content: "●";
+      position: absolute;
+      left: 0;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .action-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    
+    .action-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 32px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .action-card h3 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    
+    .action-card p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .action-card .btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 500;
+    }
+    
+    .action-card .btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+      text-decoration: none;
+    }
+    
+    .timeline-section {
+      background: white;
+      padding: 60px 0;
+    }
+    
+    .timeline-title {
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 40px;
+      color: #333;
+    }
+    
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 0%;
+      right: 0%;
+      height: 2px;
+      background: #e9ecef;
+      z-index: 1;
+    }
+    
+    .timeline-item {
+      text-align: center;
+      position: relative;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 10px;
+      background: #333;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    
+    .timeline-date {
+      border-radius: 8px;
+
+      margin-top: 40px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .timeline-content p {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #666;
+      margin: 0;
+    }
+    
+    .documents-section {
+      background: #f8f9fa;
+      padding: 60px 0;
+    }
+    
+    .documents-title {
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 40px;
+      color: #333;
+      text-align: center;
+    }
+    
+    .documents-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    
+    .document-item {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .document-icon {
+      width: 48px;
+      height: 48px;
+      background: #e9ecef;
+      border-radius: 8px;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 24px;
+    }
+    
+    .document-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    
+    .document-item p {
+      font-size: 12px;
+      color: #666;
+      margin: 0;
+    }
+    
+    .support-section {
+      background: white;
+      padding: 60px 0;
+    }
+    
+    .support-title {
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 16px;
+      color: #333;
+    }
+    
+    .support-subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    
+    .support-items {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .support-item {
+      border-bottom: 1px solid #e9ecef;
+      padding: 20px 0;
+    }
+    
+    .support-item:last-child {
+      border-bottom: none;
+    }
+    
+    .support-item h4 {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .support-item h4::after {
+      content: "▼";
+      font-size: 12px;
+      color: #666;
+    }
+    
+    @media (max-width: 768px) {
+      .upgrade-nav {
+        margin: 16px 24px;
+      }
+      
+      .features-grid,
+      .action-cards,
+      .timeline,
+      .documents-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-title {
+        font-size: 32px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Upgrade Header -->
+  <div class="upgrade-header">
+    <!-- Navigation -->
+    <div class="upgrade-nav">
+      <div class="container">
+        <div class="upgrade-nav-content">
+          <div class="nav-links">
+            <a href="#" class="nav-dropdown">Products</a>
+            <a href="#" class="nav-dropdown">About us</a>
+            <a href="#" class="nav-dropdown">Help & Support</a>
+
+          </div>
+          <div class="nav-buttons">
+            <a href="#" class="nav-btn">Log in</a>
+            <a href="#" class="nav-btn primary">I'm a broker →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Breadcrumb -->
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="#">HOME</a> › MIGRATION HUB
+      </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <div class="container">
+      <div class="hero-section">
+        <h1 class="hero-title">We're upgrading<br>Online Services for you</h1>
+        <p class="hero-subtitle">We're making it easier and more secure for you to save with us.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="content-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-image">
+          <img src="assets/laptop.jpg" height="380px" width="100%" alt="" style="border-radius: 4px;">
+        </div>
+        <div>
+          <h2 style="font-size: 24px; font-weight: 500; margin-bottom: 16px; color: #333;">What's new in Online Services?</h2>
+          <p style="font-size: 14px; color: #666; margin-bottom: 24px;">Here are some of the key benefits you can expect from the new Online Services:</p>
+          
+          <ul class="features-list">
+            <li>Instant deposits and withdrawals for faster access to your money</li>
+            <li>Regular, timely alerts and notifications to help protect your savings and keep you informed of important updates</li>
+            <li>Ability to open and manage your accounts digitally, anytime, anywhere</li>
+            <li>Real-time statements and earlier access to important documents, making it easier to stay on top of your finances</li>
+            <li>Easily and quickly update to your account and personal details without needing to contact us or waiting in long queues</li>
+          </ul>
+          
+          <div class="fscs-badge">
+            <div class="fscs-logo">FSCS</div>
+            You're protected up to £85,000
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Section -->
+  <div class="action-section">
+    <div class="container">
+      <div class="action-content">
+        <h2>What you need to do now</h2>
+        <p style="font-size: 16px; margin-bottom: 24px;">Please check your details are up to date:</p>
+        
+        <ul class="action-list">
+          <li>Email address</li>
+          <li>Nominated Account number</li>
+          <li>Mobile number</li>
+          <li>Postal address</li>
+        </ul>
+        
+        <p style="font-size: 14px; line-height: 1.5; margin-bottom: 0;">This will help you receive any important communications we send you. It will also help make your move to the new Online Services smoother, because we'll ask you to confirm your personal information when you register. Where we can, we'll send information about your account(s) by email, but we may still need to send some information by post. If any of your details are missing or incorrect, you can update them in one of the following ways:</p>
+        
+        <div class="action-cards">
+          <div class="action-card">
+            <h3>Use your online account</h3>
+            <p>Log in to online services and send us a secure message with your updated information. Select the 'Create message' option on the 'Messages' drop-down menu on your account's home page.</p>
+            <img src="assets/instructions.png" height="74px" width="100%" alt="" style="border-radius: 4px;">
+            <a href="#" class="btn">Log in to online services →</a>
+          </div>
+          
+          <div class="action-card">
+            <h3>Or call us</h3>
+            <p>Give us a call on 0345 122 1122, and we'll be happy to update this information for you.</p>
+            <p>We're available Monday – Thursday 08:00 – 18:00, Fridays 08:00 – 18:00, and Saturdays 09:00 – 16:00.</p>
+            <p>We are closed on Sunday and bank holidays.</p>
+            <a href="#" class="btn">📞 Call us on 0345 122 1122</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline Section -->
+  <div class="timeline-section">
+    <div class="container">
+      <h2 class="timeline-title">What happens next?</h2>
+      <p style="font-size: 16px; color: #666; margin-bottom: 40px;">We will start the process by moving your Easy Access account(s) to the new Online Services later this year. Below is a timeline outlining when we'll be in touch with more information about your account, and any actions you may need to take.</p>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">JUL 2025</div>
+          <div class="timeline-content">
+            <p>We send you an early notification to let you know about changes and what we need from you.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">AUG 2025</div>
+          <div class="timeline-content">
+            <p>You will receive detailed information about changes to your account(s). You can also review the documents further below in our Documents Hub.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">SEP 2025</div>
+          <div class="timeline-content">
+            <p>We'll share the next steps you need to take before your account(s) move.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">OCT 2025</div>
+          <div class="timeline-content">
+            <p>Your account(s) will move and you'll need to register for our New Online Services. You will need your address, email, mobile number and create new log in details (username/ password).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documents Section -->
+  <div class="documents-section">
+    <div class="container">
+      <h2 class="documents-title">Documents Hub</h2>
+      
+      <div class="documents-grid">
+        <div class="document-item">
+          <div class="document-icon">📄</div>
+          <h4>NoV</h4>
+          <p>73mb</p>
+        </div>
+        
+        <div class="document-item">
+          <div class="document-icon">📄</div>
+          <h4>Savings Account Conditions</h4>
+          <p>36mb</p>
+        </div>
+        
+        <div class="document-item">
+          <div class="document-icon">📄</div>
+          <h4>Privacy Statement</h4>
+          <p>67kb</p>
+        </div>
+        
+        <div class="document-item">
+          <div class="document-icon">📄</div>
+          <h4>The FSCS Information Sheet</h4>
+          <p>87kb</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Support Section -->
+  <div class="support-section">
+    <div class="container">
+      <h2 class="support-title">We're still here to help</h2>
+      <p class="support-subtitle">As a reminder, there are no immediate changes to how you use and access your account(s), but we understand you might still have some questions. If you do, please follow this link to our frequently asked questions or FAQs website.</p>
+      
+      <ul class="support-items">
+        <li class="support-item">
+          <h4>Need further support or someone to help you?</h4>
+        </li>
+        <li class="support-item">
+          <h4>Keeping your money and details safe</h4>
+        </li>
+        <li class="support-item">
+          <h4>Frequently asked questions</h4>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Simple accordion functionality for support items
+    document.querySelectorAll('.support-item h4').forEach(item => {
+      item.addEventListener('click', function() {
+        // Toggle accordion behavior could be added here
+        console.log('Support item clicked:', this.textContent);
+      });
+    });
+  </script>
+</body>
+</html>
